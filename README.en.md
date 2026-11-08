@@ -142,9 +142,47 @@ The skill applies to any category with **model-name chaos, accessory noise, and 
 
 ---
 
-## Credits
+## Credits & Licensing
 
-Built on top of [voltwake/xianyu-monitor](https://github.com/voltwake/xianyu-monitor) (MIT).
-Brand filtering rewritten, 8 analysis scripts added, Windows build dependency removed.
+Built on top of [voltwake/xianyu-monitor](https://github.com/voltwake/xianyu-monitor) (**MIT License**).
 
-Released under MIT — see [LICENSE](LICENSE).
+### What MIT actually requires
+
+The entire enforceable obligation sits in one sentence of the MIT text:
+
+> The above copyright notice and this permission notice shall be included in
+> all copies or substantial portions of the Software.
+
+In practice that means two things:
+
+1. **Keep the copyright notice** — every copy and every distribution channel must carry `Copyright (c) <year> <author>`
+2. **Keep the permission notice** — the full MIT text including the warranty disclaimer must stay verbatim
+
+MIT permits modification, commercial use, and even closed-source redistribution — **but the attribution can never be stripped.**
+
+### How this project complies
+
+```licence
+Copyright (c) 2026 voltwake
+  upstream: https://github.com/voltwake/xianyu-monitor
+
+Copyright (c) 2026 Zengbatony
+  modifications: https://github.com/Zengbatony/xianyu-ebike-shopping
+```
+
+> ⚠️ **Defect in the upstream LICENSE**: it reads `Copyright (c) 2026` with no author name.
+> We attributed it to `voltwake` based on repository ownership and recorded the upstream URL in
+> our LICENSE file for traceability. This is an inference, not what the original text states.
+
+**Inherited from upstream**: CLI scaffolding, SQLite deduplication, Chrome CDP connection, search and scan flow.
+
+**Added here**: config-driven brand whitelist, near-new grading (`young.js`), generation breakdown (`mmax.js`), four-tier modification classification (`mk2.js`), single-listing audit (`full-item.js`), `lib-guard.js`, 16 brand-filter test cases, license compliance checker.
+
+**Rewritten here**: brand filter moved from hardcoded to config; `better-sqlite3` → `node:sqlite` (zero compilation on Windows); SendKeys navigation → `page.goto`; `seed` command now supports `zone`; `setup-chrome.sh` auto-detects platform.
+
+### Full policy
+
+See [docs/licensing.md](docs/licensing.md) for the complete ruleset, all four derivative scenarios, and the pre-release checklist.
+Automated check: `npm run check:license` (wired into CI, fails the build on violation).
+
+**Any work derived from this project must retain both copyright notices above.**

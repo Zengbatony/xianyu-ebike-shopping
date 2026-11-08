@@ -36,7 +36,9 @@
     "modlevel": "node scripts/mk2.js",
     "audit": "node scripts/full-item.js",
     "probe": "node scripts/probe.js",
-    "test:brand": "node test/brand.test.js"
+    "test:brand": "node test/brand.test.js",
+    "check:license": "node scripts/check-license.js",
+    "test": "node test/brand.test.js && node scripts/check-license.js"
   },
   "dependencies": {
     "puppeteer-core": "^24.0.0"
@@ -51,6 +53,7 @@
     "LICENSE",
     "config/",
     "scripts/",
-    "docs/"
+    "docs/",
+    "templates/"
   ]
 }

@@ -27,6 +27,22 @@ jobs:
       - name: Run brand filter tests
         run: node test/brand.test.js
 
+  license-compliance:
+    name: 版权合规
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # 上游 MIT 只要求保留版权声明与许可声明，但漏掉就是侵权。
+      # 这里自动验证：LICENSE 完整、双署名、上游 URL 可追溯、package.json 一致
+      - name: 检查 LICENSE 与署名
+        run: node scripts/check-license.js
+
   config-valid:
     name: 配置文件校验
     runs-on: ubuntu-latest

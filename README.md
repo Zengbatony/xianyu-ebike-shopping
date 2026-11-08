@@ -199,10 +199,48 @@ B 车便宜、里程少 1 万、循环少 421 次、还在保修。
 
 ## 致谢与授权
 
-本项目基于 [voltwake/xianyu-monitor](https://github.com/voltwake/xianyu-monitor) 改造，原项目 MIT 授权。
-在此基础上重写了品牌过滤、增加了 8 个分析脚本、修掉了 Windows 下的编译依赖问题。
+本项目基于 [voltwake/xianyu-monitor](https://github.com/voltwake/xianyu-monitor) 改造，上游为 **MIT License**。
 
-衍生作品同样以 MIT 发布，详见 [LICENSE](LICENSE)。
+### 上游 LICENSE 对使用者只有两句话
+
+MIT 全文的强制义务集中在这一段：
+
+> The above copyright notice and this permission notice shall be included in
+> all copies or substantial portions of the Software.
+
+翻成可执行的两件事：
+
+1. **保留版权声明** —— 任何副本、任何分发形式都必须带 `Copyright (c) <年份> <作者>`
+2. **保留许可声明** —— MIT 正文含免责声明必须原样保留，不能删改
+
+MIT 允许闭源商用、允许修改、允许再许可，**但署名权不可剥离**。
+
+### 本项目的履行方式
+
+```licence
+Copyright (c) 2026 voltwake
+  upstream: https://github.com/voltwake/xianyu-monitor
+
+Copyright (c) 2026 Zengbatony
+  modifications: https://github.com/Zengbatony/xianyu-ebike-shopping
+```
+
+> ⚠️ **上游 LICENSE 的一个瑕疵**：原文写的是 `Copyright (c) 2026`，年份后面没有著作权人姓名。
+> 本项目按仓库所有者推断署名人为 `voltwake`，并在 LICENSE 中显式写上上游 URL 使来源可追溯。
+> 这是推断而非原文记载，已在本节记录。
+
+**保留自上游**：CLI 骨架、SQLite 去重、Chrome CDP 连接、搜索与扫描主流程。
+
+**本项目新增**：品牌白名单配置化、准新车分级（`young.js`）、代际细分（`mmax.js`）、改装四级分层（`mk2.js`）、单车深度核查（`full-item.js`）、`lib-guard.js` 友好前置检查、16 个品牌判定用例、版权合规检查。
+
+**本项目重写**：品牌过滤从硬编码改为配置驱动；`better-sqlite3` → `node:sqlite`（Windows 零编译）；SendKeys 导航 → `page.goto`；`seed` 命令支持 `zone` 字段；`setup-chrome.sh` 跨平台探测。
+
+### 完整规范
+
+许可要求、四种衍生情形的处理、发布前检查清单，见 [docs/licensing.md](docs/licensing.md)。
+自动化检查：`npm run check:license`（CI 已接入，不通过直接 fail）。
+
+**任何派生自本项目的作品，同样需要保留以上两段版权声明。**
 
 ---
 
@@ -230,9 +268,16 @@ xianyu-ebike-shopping/
 │  ├─ rank.js                  # 自定义维度打分
 │  ├─ probe.js                 # DOM 排障探针
 │  └─ setup-chrome.{ps1,sh}    # 启动专用 Chrome
+├─ scripts/check-license.js    # 版权合规检查（CI 用）
 ├─ docs/
-│  ├─ methodology.md
-│  ├─ pitfalls.md
-│  └─ brand-config.md
+│  ├─ methodology.md           # 方法论
+│  ├─ pitfalls.md              # 踩过的坑
+│  ├─ brand-config.md          # 品牌配置说明
+│  └─ licensing.md             # 版权与许可规范
+├─ templates/
+│  ├─ LICENSE.mit-self         # 自研项目 LICENSE 模板
+│  ├─ LICENSE.mit-derived      # 衍生 MIT 项目 LICENSE 模板
+│  ├─ NOTICE.apache            # Apache-2.0 衍生的 NOTICE 模板
+│  └─ CREDITS.snippet.md       # README 的致谢段模板
 └─ data/                       # 运行期产物（db / chrome-profile / digest），已 gitignore
 ```
