@@ -1,0 +1,75 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  brand-filter:
+    name: 品牌白名单判定
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['22', '24']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # 这组测试只依赖 fs/path，不需要安装 puppeteer，秒跑完
+      - name: Run brand filter tests
+        run: node test/brand.test.js
+
+  config-valid:
+    name: 配置文件校验
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 校验 brand.json 结构
+        run: |
+          node -e "
+          const fs = require('fs');
+          const REQUIRED = ['brandPatterns','modelPatterns','accessoryStrong','accessoryPart','vehicleSignals','fakePatterns'];
+          for (const f of ['config/brand.json','config/brand.example-generic.json']) {
+            const c = JSON.parse(fs.readFileSync(f,'utf8'));
+            for (const k of REQUIRED) {
+              if (!Array.isArray(c[k])) { console.error(\`\${f}: 缺少数组字段 \${k}\`); process.exit(1); }
+            }
+            for (const k of REQUIRED) {
+              for (const p of c[k]) {
+                try { new RegExp(p); } catch(e) { console.error(\`\${f}: \${k} 含无效正则 '\${p}' — \${e.message}\`); process.exit(1); }
+              }
+            }
+            console.log(\`✅ \${f} 通过\`);
+          }
+          "
+
+      - name: 校验 seed_tasks.json
+        run: |
+          node -e "
+          const t = JSON.parse(require('fs').readFileSync('seed_tasks.json','utf8'));
+          if (!Array.isArray(t) || !t.length) { console.error('seed_tasks.json 应为非空数组'); process.exit(1); }
+          t.forEach((x,i) => {
+            if (!x.keyword) { console.error(\`第 \${i+1} 条缺少 keyword\`); process.exit(1); }
+          });
+          console.log(\`✅ seed_tasks.json 通过，共 \${t.length} 条\`);
+          "
+
+      - name: 所有脚本语法检查
+        run: for f in scripts/*.js test/*.js; do node --check "$f" || exit 1; done && echo "✅ 语法全部通过"
+
+      - name: shell 脚本语法检查
+        run: bash -n scripts/setup-chrome.sh && echo "✅ setup-chrome.sh 通过"

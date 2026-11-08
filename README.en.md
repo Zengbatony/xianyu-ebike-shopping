@@ -2,6 +2,7 @@
 
 > An AI Agent skill that ranks second-hand e-bikes on Xianyu by **real residual value** — not by listing titles.
 
+[![test](https://github.com/Zengbatony/xianyu-ebike-shopping/actions/workflows/test.yml/badge.svg)](https://github.com/Zengbatony/xianyu-ebike-shopping/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.5-brightgreen)](https://nodejs.org)
 

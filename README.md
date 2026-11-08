@@ -2,6 +2,7 @@
 
 > 一个给 AI Agent 用的 Skill：把闲鱼上「看起来都差不多」的二手电动车，按**真实残值**排出顺序。
 
+[![test](https://github.com/Zengbatony/xianyu-ebike-shopping/actions/workflows/test.yml/badge.svg)](https://github.com/Zengbatony/xianyu-ebike-shopping/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.5-brightgreen)](https://nodejs.org)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)]()
