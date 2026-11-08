@@ -1,0 +1,39 @@
+[
+  {
+    "keyword": "九号机械师MK2",
+    "maxPrice": 7000,
+    "zone": "珠三角",
+    "filter": "租赁,分期,首付,押金,回收,代拍,碎屏,维修"
+  },
+  {
+    "keyword": "九号MMAX110",
+    "maxPrice": 6000,
+    "zone": "珠三角",
+    "filter": "租赁,分期,首付,押金,回收,代拍"
+  },
+  {
+    "keyword": "机械师一代mk2",
+    "maxPrice": 6500,
+    "zone": "深圳",
+    "filter": "租赁,分期,回收,代拍,置换"
+  },
+  {
+    "keyword": "九号MZ",
+    "maxPrice": 5000,
+    "zone": "深圳",
+    "filter": "租赁,分期,回收,代拍"
+  },
+  {
+    "keyword": "九号F90",
+    "maxPrice": 3500,
+    "zone": "深圳",
+    "filter": "租赁,分期,回收,代拍"
+  },
+  {
+    "keyword": "九号4825电池",
+    "maxPrice": 600,
+    "zone": "珠三角",
+    "filter": "回收,维修,鼓包",
+    "_note": "查配件行情要加 --all-brand，否则品牌白名单会把电池当配件剔掉"
+  }
+]

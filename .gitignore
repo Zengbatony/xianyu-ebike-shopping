@@ -1,0 +1,24 @@
+# 依赖
+node_modules/
+package-lock.json
+
+# 运行期数据（数据库、Chrome 登录态、截图、摘要）
+data/
+*.db
+*.db-journal
+*.png
+*.pid
+digest-*.md
+last_digest.md
+
+# 抓取产物与分析输出
+*.report.json
+market-report*.json
+market-analysis.json
+mk2.json
+
+# 临时脚本与日志
+*.log
+tmp/
+.DS_Store
+Thumbs.db

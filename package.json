@@ -1,0 +1,56 @@
+{
+  "name": "xianyu-ebike-shopping",
+  "version": "1.0.0",
+  "description": "闲鱼二手电动车选购决策助手 — 用电池循环数、里程÷循环交叉验证、卖家主页画像三重方法识别调表车与虚价车",
+  "keywords": [
+    "xianyu",
+    "goofish",
+    "闲鱼",
+    "used-ebike",
+    "second-hand",
+    "ninebot",
+    "九号",
+    "electric-scooter",
+    "ai-skill",
+    "openclaw",
+    "web-scraping"
+  ],
+  "license": "MIT",
+  "author": "Zengbatony",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zengbatony/xianyu-ebike-shopping.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Zengbatony/xianyu-ebike-shopping/issues"
+  },
+  "homepage": "https://github.com/Zengbatony/xianyu-ebike-shopping#readme",
+  "bin": {
+    "xianyu": "scripts/xianyu.js"
+  },
+  "scripts": {
+    "list": "node scripts/xianyu.js list",
+    "scan": "node scripts/xianyu.js scan --hours 6",
+    "market": "node scripts/market.js",
+    "young": "node scripts/young.js",
+    "modlevel": "node scripts/mk2.js",
+    "audit": "node scripts/full-item.js",
+    "probe": "node scripts/probe.js",
+    "test:brand": "node test/brand.test.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "config/",
+    "scripts/",
+    "docs/"
+  ]
+}
